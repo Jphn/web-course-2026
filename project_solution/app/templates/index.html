@@ -1,0 +1,30 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Welcome to My App</h2>
+    <p>A complete CRUD application with Flask, Jinja2, and SQLite.</p>
+    <div style="margin-top: 1.5rem;">
+        <a href="{{ url_for('items.list') }}" class="btn btn-primary">View Items</a>
+        <a href="{{ url_for('items.new') }}" class="btn btn-secondary">Create Item</a>
+    </div>
+</div>
+
+<div class="card" style="margin-top: 1.5rem;">
+    <h3>Features</h3>
+    <ul>
+        <li>Full CRUD (Create, Read, Update, Delete)</li>
+        <li>Server-side validation with flash messages</li>
+        <li>Search with pagination (10 items/page)</li>
+        <li>Unique name constraint</li>
+        <li>Responsive mobile-first design</li>
+        <li>Custom 404/500 error pages</li>
+        <li>Structured logging</li>
+        <li>Environment-based configuration</li>
+        <li>Production-ready with Gunicorn</li>
+    </ul>
+</div>
+{% endblock %}

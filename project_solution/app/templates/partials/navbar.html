@@ -1,0 +1,10 @@
+<!-- templates/partials/navbar.html -->
+<header class="header">
+    <div class="logo"><a href="{{ url_for('main.index') }}">My App</a></div>
+    <nav class="nav">
+        <a href="{{ url_for('main.index') }}">Home</a>
+        <a href="{{ url_for('main.about') }}">About</a>
+        <a href="{{ url_for('main.contact') }}">Contact</a>
+        <a href="{{ url_for('items.list') }}">Items <span class="badge">{{ total_items or 0 }}</span></a>
+    </nav>
+</header>

@@ -1,0 +1,34 @@
+<!-- templates/items/form.html -->
+{% extends 'base.html' %}
+{% from 'macros.html' import render_field, render_select, render_textarea %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>{{ title }}</h1>
+
+    <form method="POST" class="form">
+        {{ render_field('name', 'Name', 'text', name or '', true) }}
+        {{ render_textarea('description', 'Description', description or '', false, 4) }}
+        {{ render_select('category', 'Category',
+            [('work','Work'),('personal','Personal'),('study','Study')],
+            category or '', true) }}
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{{ url_for('items.list') }}" class="btn btn-secondary">Cancel</a>
+            {% if item %}
+            <a href="{{ url_for('items.list') }}" class="btn btn-secondary">Back to List</a>
+            {% endif %}
+        </div>
+    </form>
+
+    {% if item %}
+    <hr>
+    <form method="POST" action="{{ url_for('items.delete', id=item.id) }}" onsubmit="return confirm('Delete this item?')">
+        <button type="submit" class="btn btn-danger">Delete Item</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+<!-- templates/contact.html -->
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Contact</h2>
+    <p>Questions about the course?</p>
+    <ul>
+        <li>Email: <a href="mailto:course@example.com">course@example.com</a></li>
+        <li>GitHub: <a href="https://github.com/example" target="_blank">github.com/example</a></li>
+    </ul>
+    <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Back Home</a>
+</div>
+{% endblock %}

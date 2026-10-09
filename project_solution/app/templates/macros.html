@@ -1,0 +1,38 @@
+<!-- templates/macros.html -->
+{% macro render_field(name, label, type='text', value='', required=false, **kwargs) %}
+<div class="form-group">
+    <label for="{{ name }}">{{ label }}{% if required %} *{% endif %}</label>
+    <input type="{{ type }}" id="{{ name }}" name="{{ name }}" value="{{ value }}" {% if required %}required{% endif %} {{ kwargs|safe }}>
+</div>
+{% endmacro %}
+
+{% macro render_select(name, label, options, value='', required=false) %}
+<div class="form-group">
+    <label for="{{ name }}">{{ label }}{% if required %} *{% endif %}</label>
+    <select id="{{ name }}" name="{{ name }}" {% if required %}required{% endif %}>
+        <option value="">Select...</option>
+        {% for opt_value, opt_label in options %}
+        <option value="{{ opt_value }}" {% if opt_value == value %}selected{% endif %}>{{ opt_label }}</option>
+        {% endfor %}
+    </select>
+</div>
+{% endmacro %}
+
+{% macro render_textarea(name, label, value='', required=false, rows=4) %}
+<div class="form-group">
+    <label for="{{ name }}">{{ label }}{% if required %} *{% endif %}</label>
+    <textarea id="{{ name }}" name="{{ name }}" rows="{{ rows }}" {% if required %}required{% endif %}>{{ value }}</textarea>
+</div>
+{% endmacro %}
+
+{% macro flash_messages() %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-container">
+            {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+{% endmacro %}

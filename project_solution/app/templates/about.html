@@ -1,0 +1,28 @@
+<!-- templates/about.html -->
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>About</h2>
+    <p>This is the final project for the "Basic Web Development with Python" course.</p>
+    <h3>Tech Stack</h3>
+    <ul>
+        <li>Python 3.10+</li>
+        <li>Flask 3.x</li>
+        <li>Jinja2 Templates</li>
+        <li>SQLite Database</li>
+        <li>HTML5 & CSS3</li>
+        <li>Gunicorn (production server)</li>
+    </ul>
+    <h3>Project Structure</h3>
+    <ul>
+        <li>Application Factory Pattern</li>
+        <li>Blueprints for modular routes</li>
+        <li>Models layer for database operations</li>
+        <li>Template inheritance and macros</li>
+        <li>Static assets with cache-friendly structure</li>
+    </ul>
+</div>
+{% endblock %}
