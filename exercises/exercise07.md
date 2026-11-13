@@ -1,54 +1,39 @@
-# Exercício 7 - Partials de Templates
+# Exercício 7 - Partials e macros
 
 ## Objetivo
 
-Criar macro de paginação.
+Criar uma macro pequena e reutilizável para exibir categorias.
 
 ## Instruções
 
-1. No `templates/macros.html`, adicionar:
+1. Em `templates/macros.html`, adicione:
 
 ```html
-{% macro pagination(current_page, total_pages, endpoint, query_args={}) %}
-<nav class="pagination" aria-label="Paginação">
-	{% if current_page > 1 %}
-	<a
-		href="{{ url_for(endpoint, page=current_page-1, **query_args) }}"
-		class="btn btn-sm"
-		>&laquo; Anterior</a
-	>
-	{% endif %}
-
-	<span class="page-info"
-		>Página {{ current_page }} de {{ total_pages }}</span
-	>
-
-	{% if current_page < total_pages %}
-	<a
-		href="{{ url_for(endpoint, page=current_page+1, **query_args) }}"
-		class="btn btn-sm"
-		>Próxima &raquo;</a
-	>
-	{% endif %}
-</nav>
+{% macro render_badge(value, label) %}
+<span class="badge badge-{{ value }}">{{ label }}</span>
 {% endmacro %}
 ```
 
-2. No `templates/items/list.html`, usar:
+2. Importe a macro em `templates/items/list.html`.
+3. Substitua o badge escrito diretamente na tabela por:
 
 ```html
-{% from 'macros.html' import pagination %} ... {{ pagination(page, total_pages,
-'items.list') }}
+{% if item.category == 'work' %}
+    {{ render_badge(item.category, 'Trabalho') }}
+{% elif item.category == 'personal' %}
+    {{ render_badge(item.category, 'Pessoal') }}
+{% else %}
+    {{ render_badge(item.category, 'Estudo') }}
+{% endif %}
 ```
-
-3. Atualizar rota para aceitar parâmetro page (placeholder por enquanto)
 
 ## Teste
 
-Visitar `/items`, verificar paginação renderiza (mesmo que não funcional ainda).
+Visite `/items/` e confirme que as três categorias continuam com estilos
+distintos.
 
-## Critério de Sucesso
+## Critério de sucesso
 
-- Macro definida com parâmetros
-- Gera links `url_for` corretos
-- Renderiza no template de lista
+- A macro recebe parâmetros
+- A macro é importada corretamente
+- A tabela continua renderizando sem duplicar o HTML do badge

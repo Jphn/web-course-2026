@@ -35,7 +35,7 @@
 		<header class="header">
 			<div class="logo"><a href="{{ url_for('index') }}">Meu App</a></div>
 			<nav class="nav">
-				<a href="{{ url_for('index') }}">Home</a>
+				<a href="{{ url_for('index') }}">Início</a>
 				<a href="{{ url_for('about') }}">Sobre</a>
 				<a href="{{ url_for('contact') }}">Contato</a>
 			</nav>
@@ -46,7 +46,7 @@
 		</main>
 
 		<footer class="footer">
-			<p>&copy; 2024 Meu App</p>
+			<p>&copy; 2026 Meu App</p>
 		</footer>
 
 		{% block scripts %}{% endblock %}
@@ -56,7 +56,7 @@
 
 ```html
 <!-- templates/index.html -->
-{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
+{% extends 'base.html' %} {% block title %}Início{% endblock %} {% block content
 %}
 <div class="card">
 	<h2>Bem-vindo ao Meu App</h2>

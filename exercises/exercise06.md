@@ -25,13 +25,13 @@ content %}
 2. No `templates/partials/navbar.html`, adicionar link:
 
 ```html
-<a href="{{ url_for('main.services') }}">Serviços</a>
+<a href="{{ url_for('services') }}">Serviços</a>
 ```
 
-3. No `app/routes/main.py`, adicionar rota:
+3. No arquivo de rotas, adicionar:
 
 ```python
-@main_bp.route('/services')
+@app.route('/services')
 def services():
     return render_template('services.html')
 ```

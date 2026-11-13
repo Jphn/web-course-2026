@@ -1,21 +1,20 @@
-# app/__init__.py - Application Factory
 import os
+
 from flask import Flask
-from .models import init_db, close_db
+
+from .models import close_db, init_db
+
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-change-in-production')
+    app.config["SECRET_KEY"] = "dev-secret"
+    app.config["DATABASE"] = os.path.join(app.root_path, "app.db")
 
     with app.app_context():
         init_db()
-
     app.teardown_appcontext(close_db)
 
-    from .routes.main import main_bp
-    from .routes.items import items_bp
+    from .routes import register_routes
 
-    app.register_blueprint(main_bp)
-    app.register_blueprint(items_bp)
-
+    register_routes(app)
     return app

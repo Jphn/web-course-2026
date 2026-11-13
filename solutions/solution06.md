@@ -20,17 +20,17 @@ content %}
 
 ```html
 <nav class="nav">
-	<a href="{{ url_for('main.index') }}">Home</a>
-	<a href="{{ url_for('main.about') }}">Sobre</a>
-	<a href="{{ url_for('main.contact') }}">Contato</a>
-	<a href="{{ url_for('main.services') }}">Serviços</a>
+	<a href="{{ url_for('index') }}">Início</a>
+	<a href="{{ url_for('about') }}">Sobre</a>
+	<a href="{{ url_for('contact') }}">Contato</a>
+	<a href="{{ url_for('services') }}">Serviços</a>
 </nav>
 ```
 
-## app/routes/main.py (adição)
+## app/routes.py (adição)
 
 ```python
-@main_bp.route('/services')
+@app.route('/services')
 def services():
     return render_template('services.html')
 ```

@@ -1,26 +1,26 @@
 <!-- templates/index.html -->
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Início{% endblock %}
 
 {% block content %}
 <div class="card">
-    <h2>Welcome to My App</h2>
-    <p>A simple CRUD application built with Flask, Jinja2, and SQLite.</p>
+    <h2>Bem-vindo ao Meu App</h2>
+    <p>Um aplicativo CRUD simples construído com Flask, Jinja2 e SQLite.</p>
     <div style="margin-top: 1.5rem;">
-        <a href="{{ url_for('items.list') }}" class="btn btn-primary">View Items</a>
-        <a href="{{ url_for('items.new') }}" class="btn btn-secondary">Create Item</a>
+        <a href="{{ url_for('items') }}" class="btn btn-primary">Ver itens</a>
+        <a href="{{ url_for('new_item') }}" class="btn btn-secondary">Criar item</a>
     </div>
 </div>
 
 <div class="card" style="margin-top: 1.5rem;">
-    <h3>Features</h3>
+    <h3>Recursos</h3>
     <ul>
-        <li>Create, read, update, delete items</li>
-        <li>Server-side validation</li>
-        <li>Flash messages for feedback</li>
-        <li>Responsive design</li>
-        <li>Search functionality</li>
+        <li>Criar, consultar, atualizar e excluir itens</li>
+        <li>Validação no servidor</li>
+        <li>Mensagens de feedback</li>
+        <li>Design responsivo</li>
+        <li>Busca de itens</li>
     </ul>
 </div>
 {% endblock %}

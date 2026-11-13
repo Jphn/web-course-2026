@@ -9,25 +9,25 @@
     <h1>{{ title }}</h1>
 
     <form method="POST" class="form">
-        {{ render_field('name', 'Name', 'text', name or '', true) }}
-        {{ render_textarea('description', 'Description', description or '', false, 4) }}
-        {{ render_select('category', 'Category',
-            [('work','Work'),('personal','Personal'),('study','Study')],
+        {{ render_field('name', 'Nome', 'text', name or '', true) }}
+        {{ render_textarea('description', 'Descrição', description or '', false, 4) }}
+        {{ render_select('category', 'Categoria',
+            [('work','Trabalho'),('personal','Pessoal'),('study','Estudo')],
             category or '', true) }}
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <a href="{{ url_for('items.list') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{{ url_for('items') }}" class="btn btn-secondary">Cancelar</a>
             {% if item %}
-            <a href="{{ url_for('items.list') }}" class="btn btn-secondary">Back to List</a>
+            <a href="{{ url_for('items') }}" class="btn btn-secondary">Voltar à lista</a>
             {% endif %}
         </div>
     </form>
 
     {% if item %}
     <hr>
-    <form method="POST" action="{{ url_for('items.delete', id=item.id) }}" onsubmit="return confirm('Delete this item?')">
-        <button type="submit" class="btn btn-danger">Delete Item</button>
+    <form method="POST" action="{{ url_for('delete_item_route', id=item.id) }}" onsubmit="return confirm('Excluir este item?')">
+        <button type="submit" class="btn btn-danger">Excluir item</button>
     </form>
     {% endif %}
 </div>

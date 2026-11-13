@@ -1,46 +1,38 @@
 # Desenvolvimento Web Básico com Python
 
-Curso de 30 horas (15 aulas × 2h) para iniciantes absolutos.
-
-## Stack
-
-- **Python 3.10+**
-- **Flask** - microframework web
-- **Jinja2** - template engine (já incluso no Flask)
-- **HTML/CSS** - frontend básico
-- **SQLite** - banco de dados em arquivo (via `sqlite3` nativo)
+Curso introdutório de 30 horas (15 aulas de 2h) para quem está começando em
+desenvolvimento web.
 
 ## Objetivo
 
-Levar o aluno do zero até uma aplicação CRUD funcional. Ao final, o aluno consegue:
+Construir, passo a passo, um cadastro de itens com HTML, CSS, Flask, Jinja e
+SQLite. O foco é entender o caminho completo entre uma página, um formulário,
+uma rota Python e um banco de dados.
 
-- Criar rotas, templates e modelos
-- Persistir dados em SQLite
-- Continuar aprendendo sozinho
+## Conteúdo
 
-## Como rodar o projeto final
+1. HTML e CSS
+2. Formulários e arquivos estáticos
+3. Templates Jinja
+4. Flask: rotas e métodos HTTP
+5. Validação e mensagens
+6. SQLite e CRUD
+7. Organização e revisão do projeto
+
+## Projetos
+
+- `project_starter`: ponto de partida para acompanhar as aulas.
+- `project_solution`: referência do projeto final.
+
+Para executar qualquer projeto:
 
 ```bash
-cd project_starter
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate   # Windows
+cd project_starter  # ou project_solution
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 python run.py
 ```
 
-Acesse `http://localhost:5000`
-
-## Estrutura do repositório
-
-```
-.
-├── README.md
-├── syllabus.md
-├── schedule.md
-├── lessons/           # 15 arquivos de aula
-├── exercises/         # 15 arquivos de exercício
-├── solutions/         # 15 arquivos de solução
-├── project_starter/   # código inicial
-└── project_solution/  # solução completa
-```
+Os textos exibidos pelos aplicativos estão em pt-BR. Identificadores de código,
+rotas, arquivos e pastas permanecem em inglês.
