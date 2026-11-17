@@ -130,7 +130,7 @@
 ```
 
 ```css
-/* Adicionar ao style.css */
+/* static/css/style.css */
 .form {
 	background: white;
 	padding: 1.5rem;

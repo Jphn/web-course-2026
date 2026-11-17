@@ -38,7 +38,6 @@
 			<nav>
 				<a href="index.html">Home</a>
 				<a href="about.html">Sobre</a>
-				<a href="contact.html">Contato</a>
 			</nav>
 		</header>
 

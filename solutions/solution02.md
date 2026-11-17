@@ -3,6 +3,7 @@
 ## static/css/style.css (adições)
 
 ```css
+/* static/css/style.css */
 .card {
 	background: white;
 	border-radius: var(--radius);
@@ -15,6 +16,7 @@
 ## index.html (main atualizado)
 
 ```html
+<!-- index.html -->
 <main>
 	<div class="card">
 		<h2>Bem-vindo</h2>

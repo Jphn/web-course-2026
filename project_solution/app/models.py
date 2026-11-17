@@ -22,7 +22,7 @@ def init_db():
             """
             CREATE TABLE IF NOT EXISTS items (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL UNIQUE,
+                name TEXT NOT NULL,
                 category TEXT NOT NULL,
                 description TEXT,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -46,35 +46,21 @@ def get_item(id):
 
 def create_item(name, category, description=""):
     db = get_db()
-    if db.execute("SELECT 1 FROM items WHERE name = ?", (name,)).fetchone():
-        raise ValueError("Já existe um item com este nome")
-
-    try:
-        cursor = db.execute(
-            "INSERT INTO items (name, category, description) VALUES (?, ?, ?)",
-            (name, category, description),
-        )
-        db.commit()
-        return cursor.lastrowid
-    except sqlite3.IntegrityError:
-        raise ValueError("Já existe um item com este nome")
+    cursor = db.execute(
+        "INSERT INTO items (name, category, description) VALUES (?, ?, ?)",
+        (name, category, description),
+    )
+    db.commit()
+    return cursor.lastrowid
 
 
 def update_item(id, name, category, description):
     db = get_db()
-    if db.execute(
-        "SELECT 1 FROM items WHERE name = ? AND id != ?", (name, id)
-    ).fetchone():
-        raise ValueError("Já existe um item com este nome")
-
-    try:
-        db.execute(
-            "UPDATE items SET name = ?, category = ?, description = ? WHERE id = ?",
-            (name, category, description, id),
-        )
-        db.commit()
-    except sqlite3.IntegrityError:
-        raise ValueError("Já existe um item com este nome")
+    db.execute(
+        "UPDATE items SET name = ?, category = ?, description = ? WHERE id = ?",
+        (name, category, description, id),
+    )
+    db.commit()
 
 
 def delete_item(id):

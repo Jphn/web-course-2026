@@ -1,25 +1,22 @@
 # Solução 7 - Partials e macros
 
 ```html
+<!-- templates/macros.html -->
 {% macro render_badge(value, label) %}
 <span class="badge badge-{{ value }}">{{ label }}</span>
 {% endmacro %}
 ```
 
-No início de `templates/items/list.html`:
+Em `templates/categories.html`:
 
 ```html
+<!-- templates/categories.html -->
 {% from 'macros.html' import render_badge %}
+
+{{ render_badge('work', 'Trabalho') }}
+{{ render_badge('personal', 'Pessoal') }}
+{{ render_badge('study', 'Estudo') }}
 ```
 
-Uso na tabela:
-
-```html
-{% if item.category == 'work' %}
-    {{ render_badge(item.category, 'Trabalho') }}
-{% elif item.category == 'personal' %}
-    {{ render_badge(item.category, 'Pessoal') }}
-{% else %}
-    {{ render_badge(item.category, 'Estudo') }}
-{% endif %}
-```
+O CSS das classes `.badge`, `.badge-work`, `.badge-personal` e `.badge-study`
+deve ser criado pelo aluno nesta aula.

@@ -14,13 +14,13 @@
     - `{% if condicao %}...{% endif %}`
     - `{% for item in lista %}...{% endfor %}`
     - `{# comentario #}`
-3. **Renderização**: `render_template('nome.html', variavel=valor)`
-4. **Pasta de Templates**: Flask procura em `templates/` por padrão
+3. **Renderização**: carregar um arquivo e chamar `template.render(...)`
+4. **Pasta de Templates**: organizar os arquivos em `templates/`
 
 ## Prática Guiada (40 min) - Code Along
 
 ```python
-# render_demo.py (script standalone para entender renderização)
+# render_demo.py (script standalone)
 from jinja2 import Environment, FileSystemLoader
 
 env = Environment(loader=FileSystemLoader('templates'))
@@ -65,28 +65,12 @@ print(template.render(title='Dashboard', user=None, items=[]))
 ```
 
 ```bash
+# terminal
+# Instalar a biblioteca usada nesta demonstração
+pip install Jinja2
+
 # Rodar
 python render_demo.py
-```
-
-Agora com Flask:
-
-```python
-# app.py (Flask mínimo)
-from flask import Flask, render_template
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return render_template('demo.html', title='Home', user='Alice', items=['Um', 'Dois'])
-
-@app.route('/empty')
-def empty():
-    return render_template('demo.html', title='Vazio', user=None, items=[])
-
-if __name__ == '__main__':
-    app.run(debug=True)
 ```
 
 ## Exercício (10 min)
@@ -96,7 +80,7 @@ Criar `templates/profile.html`:
 - Estender o conceito: receber dict `user` com `name`, `email`, `role`
 - Mostrar "Badge Admin" se `role == 'admin'` usando `{% if %}`
 - Loop em `user.skills` lista (array de strings)
-- Testar com rota Flask `/profile`
+- Renderizar o template com o mesmo script, passando um novo dicionário
 
 ---
 
@@ -106,5 +90,5 @@ Criar `templates/profile.html`:
 - [ ] Variáveis renderizam no template
 - [ ] Condicionais mostram/escondem conteúdo
 - [ ] Loops repetem HTML para cada item
-- [ ] Flask `render_template` funciona
+- [ ] O template renderiza variáveis, condicionais e loops
 - [ ] Exercício: `profile.html` com dict e lista

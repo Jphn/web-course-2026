@@ -9,6 +9,7 @@ Criar template de perfil com dict e lista.
 1. Criar `templates/profile.html`:
 
 ```html
+<!-- templates/profile.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 	<head>
@@ -20,7 +21,7 @@ Criar template de perfil com dict e lista.
 		<p>Email: {{ user.email }}</p>
 
 		{% if user.role == 'admin' %}
-		<span class="badge badge-admin">Admin</span>
+		<p>Perfil de administradora</p>
 		{% endif %}
 
 		<h2>Habilidades</h2>
@@ -37,23 +38,23 @@ Criar template de perfil com dict e lista.
 </html>
 ```
 
-2. Adicionar rota no `app.py`:
+2. No `render_demo.py`, crie um dicionário:
 
 ```python
-@app.route('/profile')
-def profile():
-    user = {
-        'name': 'Alice',
-        'email': 'alice@example.com',
-        'role': 'admin',
-        'skills': ['Python', 'Flask', 'HTML', 'CSS']
-    }
-    return render_template('profile.html', user=user)
+# render_demo.py
+user = {
+    'name': 'Alice',
+    'email': 'alice@example.com',
+    'role': 'admin',
+    'skills': ['Python', 'Flask', 'HTML', 'CSS']
+}
+template = env.get_template('profile.html')
+print(template.render(user=user))
 ```
 
 ## Teste
 
-Visitar `/profile`, verificar todos dados renderizam.
+Executar `python render_demo.py` e verificar todos os dados renderizados.
 
 ## Critério de Sucesso
 

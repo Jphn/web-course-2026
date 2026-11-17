@@ -9,9 +9,17 @@
     {% block head_extra %}{% endblock %}
 </head>
 <body>
-    {% include 'partials/navbar.html' %}
+    <header>
+        <h1><a href="{{ url_for('index') }}">Meu App</a></h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Início</a>
+            <a href="{{ url_for('about') }}">Sobre</a>
+            <a href="{{ url_for('contact') }}">Contato</a>
+            <a href="{{ url_for('items') }}">Itens</a>
+        </nav>
+    </header>
 
-    <main class="container">
+    <main>
         {% from 'macros.html' import flash_messages %}
         {{ flash_messages() }}
         {% block content %}{% endblock %}

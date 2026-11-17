@@ -1,34 +1,49 @@
 <!-- templates/items/form.html -->
 {% extends 'base.html' %}
-{% from 'macros.html' import render_field, render_select, render_textarea %}
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<div class="form-container">
-    <h1>{{ title }}</h1>
+<h1>{{ title }}</h1>
 
-    <form method="POST" class="form">
-        {{ render_field('name', 'Nome', 'text', name or '', true) }}
-        {{ render_textarea('description', 'Descrição', description or '', false, 4) }}
-        {{ render_select('category', 'Categoria',
-            [('work','Trabalho'),('personal','Pessoal'),('study','Estudo')],
-            category or '', true) }}
+<form method="POST" class="form">
+    <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name"
+               value="{{ name or '' }}" required>
+    </div>
 
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="{{ url_for('items') }}" class="btn btn-secondary">Cancelar</a>
-            {% if item %}
-            <a href="{{ url_for('items') }}" class="btn btn-secondary">Voltar à lista</a>
-            {% endif %}
-        </div>
-    </form>
+    <div class="form-group">
+        <label for="category">Categoria</label>
+        <select id="category" name="category" required>
+            <option value="">Selecione</option>
+            <option value="work" {% if category == 'work' %}selected{% endif %}>
+                Trabalho
+            </option>
+            <option value="personal" {% if category == 'personal' %}selected{% endif %}>
+                Pessoal
+            </option>
+            <option value="study" {% if category == 'study' %}selected{% endif %}>
+                Estudo
+            </option>
+        </select>
+    </div>
 
-    {% if item %}
-    <hr>
-    <form method="POST" action="{{ url_for('delete_item_route', id=item.id) }}" onsubmit="return confirm('Excluir este item?')">
-        <button type="submit" class="btn btn-danger">Excluir item</button>
-    </form>
-    {% endif %}
-</div>
+    <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea id="description" name="description">{{ description or '' }}</textarea>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{{ url_for('items') }}" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+
+{% if item %}
+<hr>
+<form method="POST" action="{{ url_for('delete_item_route', id=item.id) }}">
+    <button type="submit" class="btn btn-danger">Excluir item</button>
+</form>
+{% endif %}
 {% endblock %}

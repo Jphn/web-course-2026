@@ -1,48 +1,26 @@
-# Exercício 6 - Herança de Templates
+# Exercício 6 - Herança de templates
 
 ## Objetivo
 
-Criar página de serviços estendendo template base.
+Criar uma página de serviços usando o layout base, sem repetir o cabeçalho e o
+rodapé.
 
 ## Instruções
 
-1. Criar `templates/services.html`:
+1. Crie `templates/services.html` usando `extends`, `title` e `content`.
+2. No menu do `base.html`, adicione um link HTML simples:
 
 ```html
-{% extends 'base.html' %} {% block title %}Serviços{% endblock %} {% block
-content %}
-<div class="card">
-	<h2>Nossos Serviços</h2>
-	<ul>
-		<li>Desenvolvimento Web</li>
-		<li>Design de API</li>
-		<li>Modelagem de Banco</li>
-	</ul>
-</div>
-{% endblock %}
+<!-- templates/base.html -->
+<a href="services.html">Serviços</a>
 ```
 
-2. No `templates/partials/navbar.html`, adicionar link:
+3. Renderize o template com o mesmo mecanismo usado na Aula 5.
 
-```html
-<a href="{{ url_for('services') }}">Serviços</a>
-```
+`url_for()` será apresentado depois que Flask for introduzido.
 
-3. No arquivo de rotas, adicionar:
+## Critério de sucesso
 
-```python
-@app.route('/services')
-def services():
-    return render_template('services.html')
-```
-
-## Teste
-
-Navegar para `/services` pela navbar, verificar página renderiza com layout base.
-
-## Critério de Sucesso
-
-- Estende `base.html`
-- Define blocks `title` e `content`
-- Link da nav funciona
-- Herda header/footer/estilos
+- A página estende `base.html`.
+- O conteúdo específico aparece no bloco `content`.
+- O cabeçalho e o rodapé aparecem uma única vez.

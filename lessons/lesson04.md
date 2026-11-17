@@ -51,7 +51,6 @@
 			<nav>
 				<a href="index.html">Home</a>
 				<a href="about.html">Sobre</a>
-				<a href="contact.html">Contato</a>
 			</nav>
 		</header>
 
@@ -81,7 +80,7 @@ document.getElementById("test-btn").addEventListener("click", () => {
 ```
 
 ```bash
-# Criar placeholders
+# terminal
 mkdir -p static/images
 # Adicionar qualquer imagem pequena como logo.png
 # Adicionar qualquer .ico como favicon.ico

@@ -28,5 +28,26 @@ edição, exclusão e revisão do projeto.
 Ao final, o aluno consegue criar uma aplicação Flask pequena, organizar seus
 arquivos, receber dados de um formulário e persistir esses dados em SQLite.
 
+## Ordem das dependências
+
+Cada etapa usa apenas conceitos apresentados anteriormente:
+
+| Conceito | Primeira aula |
+| --- | --- |
+| Classes `.card`, `.form-group` e `.btn` | 2 e 3 |
+| Includes e macros | 7 |
+| Classes `.badge-*` | 7 |
+| Flask e `render_template` | 8 |
+| `url_for` e rotas com nome | 9 |
+| `items/list.html` | 9 |
+| `request.form` e redirecionamento | 10 |
+| `flash()` e classes `.flash-*` | 11 |
+| `items/form.html` | 11 |
+| SQLite, `g` e `current_app` | 12 |
+| CRUD de itens | 13 e 14 |
+
+Quando um exemplo usa uma classe CSS ou função nova, a aula correspondente
+também apresenta sua definição ou indica explicitamente onde ela foi criada.
+
 Autenticação, CSRF, autorização, deploy, testes automatizados, paginação e
 logging ficam como próximos cursos, não como requisito desta introdução.

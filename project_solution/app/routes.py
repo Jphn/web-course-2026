@@ -32,12 +32,9 @@ def register_routes(app):
             elif category not in ("work", "personal", "study"):
                 flash("Escolha uma categoria válida.", "error")
             else:
-                try:
-                    create_item(name, category, description)
-                    flash("Item criado com sucesso!", "success")
-                    return redirect(url_for("items"))
-                except ValueError as error:
-                    flash(str(error), "error")
+                create_item(name, category, description)
+                flash("Item criado com sucesso!", "success")
+                return redirect(url_for("items"))
 
             return render_template(
                 "items/form.html",
@@ -65,12 +62,9 @@ def register_routes(app):
             elif category not in ("work", "personal", "study"):
                 flash("Escolha uma categoria válida.", "error")
             else:
-                try:
-                    update_item(id, name, category, description)
-                    flash("Item atualizado com sucesso!", "success")
-                    return redirect(url_for("items"))
-                except ValueError as error:
-                    flash(str(error), "error")
+                update_item(id, name, category, description)
+                flash("Item atualizado com sucesso!", "success")
+                return redirect(url_for("items"))
 
             return render_template(
                 "items/form.html",

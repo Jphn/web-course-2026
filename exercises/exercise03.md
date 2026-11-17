@@ -9,6 +9,7 @@ Adicionar inputs de data e arquivo ao formulário.
 1. No `form.html`, adicionar após select de categoria:
 
 ```html
+<!-- form.html -->
 <div class="form-group">
 	<label for="due_date">Data de Vencimento</label>
 	<input type="date" id="due_date" name="due_date" />

@@ -9,6 +9,7 @@ Adicionar componente `.card` e aplicá-lo.
 1. No `static/css/style.css`, adicionar:
 
 ```css
+/* static/css/style.css */
 .card {
 	background: white;
 	border-radius: var(--radius);
@@ -21,6 +22,7 @@ Adicionar componente `.card` e aplicá-lo.
 2. No `index.html`, envolver conteúdo principal:
 
 ```html
+<!-- index.html -->
 <main>
 	<div class="card">
 		<h2>Bem-vindo</h2>

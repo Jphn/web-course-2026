@@ -1,4 +1,26 @@
 # Solução 9 - Navegação
 
-As páginas são registradas com `@app.route()` e os templates usam
-`url_for("about")` e `url_for("contact")` para criar os links.
+`app/routes.py`:
+
+```python
+# app/routes.py
+def register_routes(app):
+    @app.route("/about")
+    def about():
+        return render_template("about.html")
+
+    @app.route("/contact")
+    def contact():
+        return render_template("contact.html")
+```
+
+`app/templates/base.html`:
+
+```html
+<!-- app/templates/base.html -->
+<a href="{{ url_for('about') }}">Sobre</a>
+<a href="{{ url_for('contact') }}">Contato</a>
+```
+
+`app/templates/items/list.html` é o primeiro template da lista e pode exibir
+uma mensagem de que ainda não há itens cadastrados.

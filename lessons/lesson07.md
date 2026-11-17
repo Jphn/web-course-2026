@@ -1,24 +1,38 @@
-# Aula 7 - Partials e macros de templates
+# Aula 7 - Includes e macros de templates
+
+## Pré-requisito
+
+Esta aula continua usando os templates da Aula 6. Flask, formulários enviados
+ao servidor e mensagens flash serão ensinados depois.
 
 ## Objetivos
 
-- Reutilizar fragmentos de template com `{% include %}`
-- Criar macros reutilizáveis com `{% macro %}`
-- Separar responsabilidades visuais sem duplicar HTML
+- reutilizar fragmentos com `{% include %}`;
+- criar macros com parâmetros;
+- estilizar os componentes que forem criados nesta aula.
 
-## Conteúdo (30 min)
+## Includes
 
-1. **Includes**: inserir navbar e footer compartilhados.
-2. **Macros**: criar componentes com parâmetros.
-3. **Importação**: usar `{% from 'macros.html' import nome %}`.
-4. **Escopo**: manter nomes de variáveis e arquivos em inglês no código; textos
-   exibidos ao usuário ficam em pt-BR.
-
-## Prática guiada (40 min)
-
-Crie `templates/macros.html`:
+Separe partes repetidas em arquivos:
 
 ```html
+<!-- templates/partials/footer.html -->
+<footer>
+    <p>Meu App</p>
+</footer>
+```
+
+Depois, inclua o arquivo no template base:
+
+```html
+<!-- templates/base.html -->
+{% include 'partials/footer.html' %}
+```
+
+## Macro de campo
+
+```html
+<!-- templates/macros.html -->
 {% macro render_field(name, label, type='text', value='', required=false) %}
 <div class="form-group">
     <label for="{{ name }}">{{ label }}{% if required %} *{% endif %}</label>
@@ -26,38 +40,48 @@ Crie `templates/macros.html`:
            value="{{ value }}" {% if required %}required{% endif %}>
 </div>
 {% endmacro %}
-
-{% macro flash_messages() %}
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div class="flash-container">
-        {% for category, message in messages %}
-        <div class="flash flash-{{ category }}">{{ message }}</div>
-        {% endfor %}
-    </div>
-    {% endif %}
-{% endwith %}
-{% endmacro %}
 ```
 
-No `base.html`, importe e renderize `flash_messages`. No formulário, use:
+Importe e use a macro:
 
 ```html
-{{ render_field('name', 'Nome', 'text', name or '', true) }}
+<!-- templates/index.html -->
+{% from 'macros.html' import render_field %}
+{{ render_field('name', 'Nome', required=true) }}
 ```
 
-Não use sintaxe `**kwargs` na declaração de macros Jinja. Para esta aula,
-mantenha os parâmetros explícitos.
+## CSS criado nesta aula
+
+Uma macro gera HTML, mas não cria estilos. A classe `.form-group` já foi
+estilizada na Aula 3; reutilize aquele CSS em vez de criá-lo novamente.
+
+Para o exercício desta aula, adicione ao `style.css` as classes de categoria:
+
+```css
+/* static/css/style.css */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+}
+
+.badge-work { background: #e3f2fd; color: #1565c0; }
+.badge-personal { background: #f3e5f5; color: #7b1fa2; }
+.badge-study { background: #e8f5e9; color: #2e7d32; }
+```
+
+As classes de mensagens (`flash-*`) ainda não aparecem aqui. Elas dependem de
+`flash()` do Flask e serão criadas junto com as mensagens na Aula 11.
 
 ## Exercício (10 min)
 
-Crie uma macro `render_badge(value, label)` e use-a na tabela de itens para
-exibir a categoria. Teste também uma lista vazia e uma mensagem de feedback.
+Crie uma macro `render_badge(value, label)` e o CSS de `.badge`. Use-a em uma
+página de exemplo com três categorias, sem depender ainda do banco de dados.
 
 ## Checklist
 
-- [ ] Navbar e footer são incluídos pelo template base
-- [ ] `macros.html` define pelo menos duas macros
-- [ ] O formulário usa uma macro de campo
-- [ ] Flash messages aparecem sem duplicação de HTML
-- [ ] Textos visíveis estão em pt-BR
+- [ ] Um fragmento é incluído com `include`
+- [ ] Uma macro é importada e chamada
+- [ ] As classes usadas pela macro estão estilizadas
+- [ ] O exercício funciona sem Flask ou banco de dados
